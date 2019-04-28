@@ -67,14 +67,17 @@ def parser(bot, update, job_queue, chat_data):
         delay = 30
         update.message.reply_text('засек 30 секунд', reply_markup=wait_menu)
         job = job_queue.run_once(task_30_sec, delay, context=update.message.chat_id)
+        chat_data['job'] = job
     elif text == '1 минута':
         delay = 60
         update.message.reply_text('засек 1 минуту', reply_markup=wait_menu)
         job = job_queue.run_once(task_1_min, delay, context=update.message.chat_id)
+        chat_data['job'] = job
     elif text == '5 минут':
         delay = 300
         update.message.reply_text('засек 5 минут', reply_markup=wait_menu)
         job = job_queue.run_once(task_5_min, delay, context=update.message.chat_id)
+        chat_data['job'] = job
 
     elif text == 'вернуться назад':
         update.message.reply_text('Что от меня требуется?', reply_markup=main_menu)
