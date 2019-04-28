@@ -96,7 +96,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("dice", dice))
     dp.add_handler(CommandHandler("timer", timer))
-    dp.add_handler(CommandHandler("close", close))
+    dp.add_handler(CommandHandler("close", close, pass_chat_data=True))
 
     # Запускаем цикл приема и обработки сообщений.
     updater.start_polling()
