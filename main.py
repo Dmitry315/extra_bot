@@ -48,11 +48,11 @@ def close(bot, update, chat_data):
     update.message.reply_text('Хорошо, вернулся сейчас!', reply_markup=timer_menu)
 
 def task_30_sec(bot, job):
-    bot.send_message(job.context, text='30 секунд истекло')
+    bot.send_message(job.context, text='30 секунд истекло', reply_markup=timer_menu)
 def task_1_min(bot, job):
-    bot.send_message(job.context, text='1 минута истекла')
+    bot.send_message(job.context, text='1 минута истекла', reply_markup=timer_menu)
 def task_5_min(bot, job):
-    bot.send_message(job.context, text='5 минут истекло')
+    bot.send_message(job.context, text='5 минут истекло', reply_markup=timer_menu)
 
 def parser(bot, update, job_queue, chat_data):
     text = update.message.text
@@ -77,7 +77,7 @@ def parser(bot, update, job_queue, chat_data):
         job = job_queue.run_once(task_5_min, delay, context=update.message.chat_id)
 
     elif text == 'вернуться назад':
-        update.message.reply_text('Что от меня требуется?', reply_markup=dice_menu)
+        update.message.reply_text('Что от меня требуется?', reply_markup=main_menu)
 
 
 def main():
