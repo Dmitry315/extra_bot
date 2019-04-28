@@ -83,7 +83,7 @@ def parser(bot, update, job_queue, chat_data):
 def main():
     # Создаём объект updater. Вместо слова "TOKEN" надо разместить
     # полученный от @BotFather токен
-    updater = Updater(token='810937855:AAF8rSV6IbTPtYqG9vfWdlMQkoR2OaG-fi0')
+    updater = Updater(token='804034448:AAEeUxtrNhYJg77TUCy_egsG6BWgMpPfgWM')
 
     # Получаем из него диспетчер сообщений.
     dp = updater.dispatcher
