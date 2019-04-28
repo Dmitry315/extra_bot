@@ -57,11 +57,11 @@ def task_5_min(bot, job):
 def parser(bot, update, job_queue, chat_data):
     text = update.message.text
     if text == 'кинуть один шестигранный кубик':
-        update.message.reply_text('Выпало: ' + str(randint(1, 7)), reply_markup=dice_menu)
+        update.message.reply_text('Выпало: ' + str(randint(1, 6)), reply_markup=dice_menu)
     elif text == 'кинуть 2 шестигранных кубика одновременно':
-        update.message.reply_text('Выпало: ' + str(randint(1, 7)) + ' и ' + str(randint(1, 7)), reply_markup=dice_menu)
+        update.message.reply_text('Выпало: ' + str(randint(1, 6)) + ' и ' + str(randint(1, 7)), reply_markup=dice_menu)
     elif text == 'кинуть 20-гранный кубик':
-        update.message.reply_text('Выпало: ' + str(randint(1, 21)), reply_markup=dice_menu)
+        update.message.reply_text('Выпало: ' + str(randint(1, 20)), reply_markup=dice_menu)
 
     elif text == '30 секунд':
         delay = 30
