@@ -10,14 +10,14 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 skip_key = [['/skip']]
-skip = ReplyKeyboardMarkup(skip_key, one_time_keyboard=False)
+skip_menu = ReplyKeyboardMarkup(skip_key, one_time_keyboard=False)
 
 
 def start(bot, update):
     update.message.reply_text(
         "Привет. Пройдите небольшой опрос, пожалуйста!\n"
         "Вы можете прервать опрос, послав команду /stop.\n"
-        "В каком городе вы живёте?")
+        "В каком городе вы живёте?", reply_markup=skip_menu)
 
     # Число-ключ в словаре states —
     # втором параметре ConversationHandler'а.
@@ -69,7 +69,7 @@ def main():
 
         states={
             # Добавили user_data для сохранения ответа.
-            1: [MessageHandler(Filters.text, first_response, pass_user_data=True)],
+            1: [MessageHandler(Filters.text, first_response, pass_user_data=True), CommandHandler('skip', skip)],
             # ...и для его использования.
             2: [MessageHandler(Filters.text, second_response, pass_user_data=True)]
         },
