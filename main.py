@@ -42,11 +42,15 @@ def first_response(bot, update, user_data):
 def second_response(bot, update, user_data):
     weather = update.message.text
     # Используем user_data в ответе.
-    update.message.reply_text("Спасибо за участие в опросе! Привет, {0}!".format(user_data['locality']))
+    if user_data['locality'] == '':
+        update.message.reply_text("Спасибо за участие в опросе!")
+    else:
+        update.message.reply_text("Спасибо за участие в опросе! Привет, {0}!".format(user_data['locality']))
     return ConversationHandler.END
 
 
-def skip(bot, update):
+def skip(bot, update, user_data):
+    user_data['locality'] = ''
     update.message.reply_text('Какая погода у вас за окном?')
     return 2
 
@@ -69,7 +73,7 @@ def main():
 
         states={
             # Добавили user_data для сохранения ответа.
-            1: [MessageHandler(Filters.text, first_response, pass_user_data=True), CommandHandler('skip', skip)],
+            1: [MessageHandler(Filters.text, first_response, pass_user_data=True), CommandHandler('skip', skip, pass_user_data=True)],
             # ...и для его использования.
             2: [MessageHandler(Filters.text, second_response, pass_user_data=True)]
         },
